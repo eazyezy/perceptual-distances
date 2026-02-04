@@ -1,0 +1,19 @@
+# Map
+
+file: lad/qp.kml
+
+disperse: yes
+
+# Data
+
+file: lad/qp_placements.txt
+
+type: difference data
+
+# Weight
+
+none
+
+# Probabilistic clustering
+
+defaults (noise = 0.2, limit = 60%, exponent = 1.5, method = group average + weighted average)
