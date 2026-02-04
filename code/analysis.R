@@ -4,7 +4,7 @@ library(tibble)
 library(adehabitatHR)
 
 #### 1. Read in the data ####
-d <- read.csv("placements\\placements_qp.csv") # change qp <-> lad as needed
+d <- read.csv("placements\\qp_placements.csv") # change qp <-> lad as needed
 
 #### 2. Get all combinations of stimuli ####
 combos <- as.data.frame(t(combn(unique(d$stimulus),2))) %>%
