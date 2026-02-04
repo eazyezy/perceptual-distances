@@ -4,7 +4,7 @@ library(tibble)
 library(adehabitatHR)
 
 #### 1. Read in the data ####
-d <- read.csv("placements\\qp_placements.csv") # change qp <-> lad as needed
+d <- read.csv("data\\placements\\qp_placements.csv") # change qp <-> lad as needed
 
 #### 2. Get all combinations of stimuli ####
 combos <- as.data.frame(t(combn(unique(d$stimulus),2))) %>%
@@ -19,7 +19,7 @@ for (i in 1:nrow(combos)) {
   # get placements coordinates
   coords <- d %>%
     filter(stimulus %in% c(combos[i,1:2])) %>%
-    select(risposta_x,risposta_y)
+    select(placement_x,placement_y)
   
   # make spatial dataframe
   placements_sp <- SpatialPointsDataFrame(coords, stimuli)
@@ -29,12 +29,12 @@ for (i in 1:nrow(combos)) {
 }
 
 #### 4. Derive the distance matrix #### 
-diff <- as.data.frame(t(combos)) %>%
-  pivot_wider(names_from = 2,values_from = 3,values_fill = NA) %>%
-  tibble::column_to_rownames('1') %>%
-  # add missing rows
-  mutate(Vicobarone=NA,.before=1) %>%
+dist <- combos %>%
+  pivot_wider(names_from = B, values_from = V3,values_fill = NA) %>%
+  column_to_rownames("A") %>%
+  mutate(Vicobarone=NA,.before = 1) %>%
   add_row("Romagnese" = NA)
+rownames(dist) <- colnames(dist)
 
 bhatt <- dist
 bhatt[lower.tri(bhatt)] = t(bhatt)[lower.tri(bhatt)]
