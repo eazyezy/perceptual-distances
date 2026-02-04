@@ -47,4 +47,4 @@ bhatt_symm <- bhatt %>%
   mutate_all(symm) 
 
 # final dataset fed to Gabmap
-write.csv(bhatt_symm,"distances\\qp_distances.csv")
+write.csv(bhatt_symm,"distances\\demo\\qp_distances.csv")
