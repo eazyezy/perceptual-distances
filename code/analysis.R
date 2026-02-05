@@ -22,24 +22,17 @@ m <- matrix(data=NA,
 for (i in stims) {
   for (j in stims) {
     # get stimuli pair
-    stimuli <- d %>%
-      filter(stimulus %in% c(i,j)) %>%
-      select(stimulus)
+    stimuli <- as.data.frame(d[d$stimulus %in% c(i,j),1])
     # get placements coordinates
-    coords <- d %>%
-      filter(stimulus %in% c(i,j)) %>%
-      select(placement_x,placement_y)
-    
+    coords <- d[d$stimulus %in% c(i,j),2:3]
     # make spatial dataframe
     placements_sp <- SpatialPointsDataFrame(coords,stimuli)
-    
+    # compute BA values and store in matrix
     if (i!=j) {
-      # compute BA values and store in matrix
       m[i,j] <- round(kerneloverlap(placements_sp, method='BA')[1,2],2)
     } else {
       m[i,j] <- 1
     }
-      
   }
 }
 
