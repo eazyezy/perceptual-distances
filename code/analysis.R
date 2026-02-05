@@ -4,10 +4,15 @@ library(tibble)
 library(adehabitatHR)
 
 #### 1. Read in the data (change qp <-> lad as needed) ####
-d <- read.csv("data\\placements\\lad_placements.csv")
+d <- read.csv("data\\placements\\qp_placements.csv")
 
 # stimuli
 stims <- unique(d$stimulus)
+
+# descriptive statistics
+mean(d$error_in_km)
+max(d$error_in_km)
+boxplot(d$error_in_km)
 
 #### 2. Compute the overlap coefficient #### 
 
