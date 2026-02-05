@@ -35,7 +35,7 @@ for (i in stims) {
     
     if (i!=j) {
       # compute BA values and store in matrix
-      m[i,j] <- round(kerneloverlap(placements_sp, method='BA')[1,2],2) #%>% print()
+      m[i,j] <- round(kerneloverlap(placements_sp, method='BA')[1,2],2)
     } else {
       m[i,j] <- 1
     }
