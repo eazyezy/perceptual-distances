@@ -4,8 +4,7 @@ library(tibble)
 library(adehabitatHR)
 
 #### 1. Read in the data (change qp <-> lad as needed) ####
-d <- read.csv("data\\placements\\lad_placements.csv") %>%
-  arrange(stimulus)
+d <- read.csv("data\\placements\\lad_placements.csv")
 
 # stimuli
 stims <- unique(d$stimulus)
