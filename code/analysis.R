@@ -41,11 +41,16 @@ for (i in stims) {
 }
 
 #### 3. Make distances symmetric #### 
-symm <- function(x) round(sqrt(1-x^2),2)
 
-m_sym <- apply(m,1:2,symm)
+ba2hd <- function(x) round(sqrt(1-x),2)
+
+m_sym <- apply(m,1:2,ba2hd)
 
 #### 4. Write results to file ####
 
 #final dataset fed to Gabmap
-write.csv(m_sym,"distances\\demo\\lad_distances.csv")
+write.table(m_sym
+            ,"distances\\lad_distances.txt"
+            ,sep="\t"
+            ,quote = F
+            ,row.names = T)
